@@ -104,10 +104,10 @@ namespace WaterIsCold
 
         public static bool RenderAsInDeepWater( Pawn pawn )
         {
-            if (ModSettings_WaterIsCold.deepWater && !pawn.Swimming)
+            if (ModSettings_WaterIsCold.deepWater && !pawn.Swimming && pawn.Map != null && pawn.Spawned)
             {
                 TerrainDef terrain = pawn.Position.GetTerrain(pawn.Map);
-                if (terrain.IsWater && !Utility.IsShallowWater(terrain))
+                if (terrain != null && terrain.IsWater && !Utility.IsShallowWater(terrain))
                     return true;
             }
             return false;
